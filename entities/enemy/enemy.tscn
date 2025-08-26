@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1spn6r0imt1k"]
+
+[ext_resource type="Script" uid="uid://8u5w4ije4sbq" path="res://entities/enemy/enemy.gd" id="1_ksmh7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ksmh7"]
+
+[node name="Enemy" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_ksmh7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ksmh7")
