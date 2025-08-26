@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cerpggdnjpa37"]
+
+[ext_resource type="Texture2D" uid="uid://bci7tmreo5hvv" path="res://assets/level.png" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://cmjdv5sdoq13" path="res://entities/player/player.tscn" id="2_vonw3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vonw3"]
+radius = 131.0
+height = 1113.36
+
+[node name="Level" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.08, 1.08)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(140, -1.28746e-05)
+scale = Vector2(1.51953, 1.00586)
+texture = ExtResource("1_u52ul")
+
+[node name="Player" parent="." instance=ExtResource("2_vonw3")]
+position = Vector2(162, 2)
+
+[node name="LevelBoundaries" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBoundaries"]
+position = Vector2(98, 329)
+rotation = 1.34126
+shape = SubResource("CapsuleShape2D_vonw3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelBoundaries"]
+polygon = PackedVector2Array(-602, 196, -197, 9, -4, -53, 107, -67, 388, -82, 600, -76, 711, -10, 721, 103, 651, 120, 532, 105, 598, 364, 1232, -246, 271, -488, -612, -260, -733, 520, -288, 610, -343, 315, -524, 307, -583, 272)
