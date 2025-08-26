@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bci7tmreo5hvv" path="res://assets/level.png" id="1_u52ul"]
 [ext_resource type="PackedScene" uid="uid://cmjdv5sdoq13" path="res://entities/player/player.tscn" id="2_vonw3"]
-[ext_resource type="PackedScene" uid="uid://1spn6r0imt1k" path="res://entities/enemy/enemy.tscn" id="3_oi3di"]
+[ext_resource type="PackedScene" uid="uid://bxqprhm0a3idx" path="res://entities/enemy/spawn_point.tscn" id="3_oi3di"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vonw3"]
 radius = 131.0
@@ -33,5 +33,8 @@ shape = SubResource("CapsuleShape2D_vonw3")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelBoundaries"]
 polygon = PackedVector2Array(-602, 196, -197, 9, -4, -53, 107, -67, 388, -82, 600, -76, 711, -10, 721, 103, 651, 120, 532, 105, 598, 364, 1232, -246, 271, -488, -612, -260, -733, 520, -288, 610, -343, 315, -524, 307, -583, 272)
 
-[node name="Enemy" parent="." instance=ExtResource("3_oi3di")]
-position = Vector2(-202, 13)
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(-887, 0)
+
+[node name="SpawnPoint" parent="SpawnPoints" node_paths=PackedStringArray("level") instance=ExtResource("3_oi3di")]
+level = NodePath("../..")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxqprhm0a3idx"]
+
+[ext_resource type="Script" uid="uid://mdol2dqv3sgm" path="res://entities/enemy/spawn_point.gd" id="1_on2nf"]
+[ext_resource type="PackedScene" uid="uid://1spn6r0imt1k" path="res://entities/enemy/enemy.tscn" id="2_o18mw"]
+
+[node name="SpawnPoint" type="Marker2D"]
+script = ExtResource("1_on2nf")
+enemy_scene = ExtResource("2_o18mw")
+
+[node name="Cooldown" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
