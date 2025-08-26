@@ -12,6 +12,12 @@ extends Marker2D
 @export_range(0.1, 2.0, 0.1) var minimum_cooldown : float = 1.0
 @export_range(2.0, 4.0, 0.1) var maximum_cooldown : float = 2.0
 
+@export_category("Position spread")
+@export var min_horizontal_spread : int = 0
+@export var max_horizontal_spread : int = 50
+@export var min_vertical_spread : int = -50
+@export var max_vertical_spread : int = 50
+
 func _ready():
 	set_timer_timeout()
 
@@ -20,7 +26,7 @@ func set_timer_timeout():
 
 func spawn_enemy():
 	var enemy_instance = enemy_scene.instantiate()
-	var random_spread =  Vector2(randf_range(0.0, 50.0), randf_range(-25, 25))
+	var random_spread =  Vector2(randf_range(min_horizontal_spread, max_horizontal_spread), randf_range(min_vertical_spread, max_vertical_spread))
 	level.add_child(enemy_instance)
 	enemy_instance.global_position = global_position + random_spread
 
