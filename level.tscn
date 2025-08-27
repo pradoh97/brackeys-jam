@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://cerpggdnjpa37"]
+[gd_scene load_steps=9 format=4 uid="uid://cerpggdnjpa37"]
 
 [ext_resource type="Texture2D" uid="uid://ueoux4ufaxg8" path="res://assets/background/bitglow/kitchen.png" id="1_0b4ue"]
 [ext_resource type="Texture2D" uid="uid://bci7tmreo5hvv" path="res://assets/level.png" id="1_u52ul"]
 [ext_resource type="PackedScene" uid="uid://cmjdv5sdoq13" path="res://entities/player/player.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://bxqprhm0a3idx" path="res://entities/enemy/spawn_point.tscn" id="3_oi3di"]
+[ext_resource type="PackedScene" uid="uid://it8taj5bvyg" path="res://stomach/stomach.tscn" id="5_f2txt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2txt"]
 texture = ExtResource("1_0b4ue")
@@ -210,18 +211,20 @@ tile_map_data = PackedByteArray("AAD5//z/AAAMAAwAAAD5//3/AAAMAAwAAAD5//7/AAAMAAw
 tile_set = SubResource("TileSet_1ainy")
 
 [node name="Mouth" type="Sprite2D" parent="Background"]
-position = Vector2(140, -1.28746e-05)
-scale = Vector2(1.51953, 1.00586)
+position = Vector2(335, -13)
+scale = Vector2(1.125, 1.085)
 texture = ExtResource("1_u52ul")
 
-[node name="LevelBoundaries" type="StaticBody2D" parent="."]
+[node name="LevelBoundaries" type="StaticBody2D" parent="Background/Mouth"]
+position = Vector2(-92.1337, 1.27996e-05)
+scale = Vector2(0.658098, 0.994174)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBoundaries"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Mouth/LevelBoundaries"]
 position = Vector2(98, 329)
 rotation = 1.34126
 shape = SubResource("CapsuleShape2D_vonw3")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelBoundaries"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Mouth/LevelBoundaries"]
 polygon = PackedVector2Array(-602, 196, -197, 9, -4, -53, 107, -67, 388, -82, 600, -76, 711, -10, 721, 103, 651, 120, 532, 105, 598, 364, 1232, -246, 271, -488, -612, -260, -733, 520, -288, 610, -343, 315, -524, 307, -583, 272)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -241,3 +244,6 @@ level = NodePath("../..")
 max_horizontal_spread = 100
 min_vertical_spread = -100
 max_vertical_spread = 100
+
+[node name="Stomach" parent="." instance=ExtResource("5_f2txt")]
+position = Vector2(-738, 368)
