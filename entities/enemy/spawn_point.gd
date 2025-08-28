@@ -1,6 +1,6 @@
 extends Marker2D
 
-@export var level : Node2D
+@export var level : Level
 
 @export var enemy_scene : PackedScene
 
@@ -27,9 +27,8 @@ func set_timer_timeout():
 func spawn_enemy():
 	var enemy_instance = enemy_scene.instantiate()
 	var random_spread =  Vector2(randf_range(min_horizontal_spread, max_horizontal_spread), randf_range(min_vertical_spread, max_vertical_spread))
-	level.add_child(enemy_instance)
+	level.get_enemies_node().add_child(enemy_instance)
 	enemy_instance.global_position = global_position + random_spread
-
 
 func _on_cooldown_timeout():
 	set_timer_timeout()
