@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bmos4h4ujt1ov" path="res://UI/stomach/stomach.gd" id="1_ui8ch"]
 [ext_resource type="Texture2D" uid="uid://b6glr47l7fs48" path="res://assets/stomach/stomach.png" id="1_ywnvn"]
 
-[node name="Sprite2D" type="TextureRect"]
+[node name="Stomach" type="TextureRect"]
 offset_right = 1280.0
 offset_bottom = 1391.0
 texture = ExtResource("1_ywnvn")
