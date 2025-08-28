@@ -1,15 +1,13 @@
-extends TextureRect
+extends Node2D
 class_name Stomach
 
-var reward_nutrients = 1
-var ingest_time = 1
+@export var chewed_food_scene : PackedScene
 
 func ingest_enemy(enemy):
-	var timer = Timer.new()
+	var chewed_food = chewed_food_scene.instantiate()
+	enemy.queue_free()
+	$ChewedFoodSpawn.add_child(chewed_food)
 
-	enemy.add_child(timer)
-	timer.start(ingest_time)
-	timer.timeout.connect(func():
-		enemy.queue_free()
-		Griller.nutrients = Griller.nutrients + reward_nutrients
-	)
+
+func _on_acid_body_entered(chewed_food : ChewedFood):
+	chewed_food.degrade()
