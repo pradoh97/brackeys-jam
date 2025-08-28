@@ -8,13 +8,12 @@ func _physics_process(_delta):
 	velocity.y = speed * direction.y
 	direction.x = Input.get_axis("left", "right")
 	if direction.x:
-		velocity.x = direction.x * speed
+		velocity.x = direction.x
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	if direction.y:
-		velocity.y = speed * direction.y
+		velocity.y = direction.y
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
-
-	velocity.normalized()
+	velocity = velocity.normalized() * speed
 	move_and_slide()

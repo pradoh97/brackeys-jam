@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://it8taj5bvyg"]
+
+[ext_resource type="Texture2D" uid="uid://dat6a8p6bqyh6" path="res://assets/stomach/stomach_front.png" id="1_d6ywb"]
+[ext_resource type="Script" uid="uid://bmos4h4ujt1ov" path="res://UI/stomach/stomach.gd" id="1_ui8ch"]
+[ext_resource type="PackedScene" uid="uid://oyovxhlgv6uo" path="res://entities/chewed_food/chewed_food.tscn" id="3_0juq2"]
+[ext_resource type="Texture2D" uid="uid://0jklmd3w4mml" path="res://assets/stomach/stomach_back.png" id="3_2xo4x"]
+
+[node name="Stomach" type="Node2D"]
+script = ExtResource("1_ui8ch")
+chewed_food_scene = ExtResource("3_0juq2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(123, -147, 351, 27, 462, 283, 579, 368, 666, 484, 687, 596, 682, 700, 656, 799, 589, 890, 410, 931, 335, 967, 280, 1027, 265, 1092, 340, 1201, 449, 1242, 604, 1253, 747, 1232, 890, 1180, 980, 1113, 1105, 962, 1152, 853, 1198, 692, 1185, 524, 1133, 381, 1012, 283, 869, 232, 770, 233, 726, 211, 644, 196, 591, 145, 553, 63, 563, -200, 1126, -202, 1616, 695, 1287, 1281, 402, 1377, -34, 1001)
+
+[node name="Acid" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Acid"]
+polygon = PackedVector2Array(691, 664, 820, 692, 1188, 705, 1183, 729, 687, 686)
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(647, 683.5)
+texture = ExtResource("3_2xo4x")
+
+[node name="ChewedFoodSpawn" type="Marker2D" parent="."]
+position = Vector2(427, -168)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(5.58317e-06, 0.832253, 0.0868986, 0.364706)
+polygon = PackedVector2Array(681, 663, 816, 691, 908, 697, 994, 699, 1048, 699, 1135.37, 702.921, 1204, 706, 1106, 1006, 962, 1161, 715, 1249, 475, 1255, 246, 1169, 240, 1021, 377, 906, 557, 818)
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(647, 683.5)
+texture = ExtResource("1_d6ywb")
+
+[connection signal="body_entered" from="Acid" to="." method="_on_acid_body_entered"]

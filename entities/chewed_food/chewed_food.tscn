@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://oyovxhlgv6uo"]
+
+[ext_resource type="Texture2D" uid="uid://c4cl76us7n5c6" path="res://assets/enemies/chewed_food.png" id="1_738nh"]
+[ext_resource type="Script" uid="uid://d3rjhrbya5uv8" path="res://entities/chewed_food/chewed_food.gd" id="1_bupje"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_738nh"]
+radius = 16.0312
+
+[sub_resource type="Gradient" id="Gradient_bupje"]
+colors = PackedColorArray(0.639216, 0.529412, 0.2, 1, 0.639216, 0.529412, 0.2, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cggyq"]
+gradient = SubResource("Gradient_bupje")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="ChewedFood" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 7
+gravity_scale = 0.5
+script = ExtResource("1_bupje")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.536335, 0.893019, 0.603854, 1)
+position = Vector2(0, 0.5)
+scale = Vector2(2, 2)
+texture = ExtResource("1_738nh")
+offset = Vector2(3, -4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_738nh")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+texture = SubResource("GradientTexture2D_cggyq")
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(16, 1)
+gravity = Vector2(0, -20)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
